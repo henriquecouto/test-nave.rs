@@ -1,10 +1,18 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+
+import {Container, Logo, Form} from './styles';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 export default function LoginScreen() {
   return (
-    <View>
-      <Text>Hello LoginScreen</Text>
-    </View>
+    <Container>
+      <Logo />
+      <Form>
+        <Input label="E-mail" />
+        <Input label="Senha" />
+        <Button>Entrar</Button>
+      </Form>
+    </Container>
   );
 }
