@@ -6,7 +6,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import makeLogin from '../../helpers/actions/auth';
 import Alert from '../../components/Alert';
-import { Logo } from '../../../assets/images';
+import {Logo} from '../../../assets/images';
 
 export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState('');

@@ -1,16 +1,26 @@
 import validator from 'validator';
 import {login} from '../api';
+import {saveUserData} from '../storage/user-data';
 
-export default function makeLogin(email, password, onSuccess, onError) {
+export default function makeLogin(
+  email,
+  password,
+  successCallback,
+  errorCallback,
+) {
   if (!validator.isEmail(email)) {
-    onError('Você inseriu um email inválido!');
+    errorCallback('Você inseriu um email inválido!');
     return;
   }
 
   if (password.length < 6) {
-    onError('A sua senha está inválida!');
+    errorCallback('A sua senha está inválida!');
     return;
   }
 
-  login(email, password, onSuccess, onError);
+  const onSuccess = (userData) => {
+    saveUserData(userData, successCallback, errorCallback);
+  };
+
+  login(email, password, onSuccess, errorCallback);
 }
