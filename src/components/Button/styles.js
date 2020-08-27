@@ -1,10 +1,11 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
-  width: 100%;
+  width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
   height: 40px;
-  background-color: ${(props) => props.theme.palette.primary};
-  margin: 20px 0;
+  background-color: ${(props) =>
+    props.transparent ? '#0000' : props.theme.palette.primary};
+  margin: ${(props) => (props.dense ? '0' : '20px 0')};
   align-items: center;
   justify-content: center;
 `;
