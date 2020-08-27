@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import LogoImage from '../../../assets/images/logo.svg';
 
 export const Container = styled.SafeAreaView`
-  background-color: ${(props) => props.theme.palette.background};
+  background-color: ${(props) => props.theme.palette.secondary};
   height: 100%;
   align-items: center;
   justify-content: center;
