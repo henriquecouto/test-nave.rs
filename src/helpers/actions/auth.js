@@ -20,6 +20,6 @@ export function makeLogin(email, password, successCallback, errorCallback) {
   login(email, password, onSuccess, errorCallback);
 }
 
-export function makeLogout(successCallback) {
-  removeUserData(successCallback);
+export function makeLogout() {
+  removeUserData();
 }

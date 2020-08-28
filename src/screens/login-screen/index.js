@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {CommonActions} from '@react-navigation/native';
 
 import {Container, Form} from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import {makeLogin} from '../../helpers/actions/auth';
 import Alert from '../../components/Alert';
 import {Logo} from '../../../assets/images';
+import {UserContext} from '../../contexts/user-context';
 
 export default function LoginScreen({navigation}) {
+  const [, {login}] = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -23,10 +24,12 @@ export default function LoginScreen({navigation}) {
         }),
       );
     };
+
     const onError = (errorMessage) => {
       setError(errorMessage);
     };
-    makeLogin(email, password, onSuccess, onError);
+
+    login(email, password, onSuccess, onError);
   };
 
   return (

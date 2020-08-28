@@ -5,7 +5,7 @@ const USERDATA_STORAGEKEY = '@user-data';
 const saveUserData = async (userData, onSuccess, onError) => {
   try {
     await AsyncStorage.setItem(USERDATA_STORAGEKEY, JSON.stringify(userData));
-    onSuccess();
+    onSuccess(userData);
   } catch (error) {
     onError('Ocorreu um erro ao salvar as informações de login');
   }
@@ -21,10 +21,9 @@ const loadUserData = async (onSuccess) => {
   }
 };
 
-const removeUserData = async (onSuccess) => {
+const removeUserData = async () => {
   try {
     await AsyncStorage.removeItem(USERDATA_STORAGEKEY);
-    onSuccess();
   } catch (error) {
     console.log(error);
   }

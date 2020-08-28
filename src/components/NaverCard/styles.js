@@ -14,3 +14,12 @@ export const ProfilePicture = styled.Image`
   height: ${profilePictureSize}px;
   width: ${profilePictureSize}px;
 `;
+
+export const InfoContainer = styled.View`
+  padding: 8px 0;
+`;
+
+export const ActionsContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;

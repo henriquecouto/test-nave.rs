@@ -12,4 +12,16 @@ const H2 = styled.Text`
   line-height: 24px;
 `;
 
-export default {H1, H2};
+const Body1 = styled.Text`
+  font-family: 'Montserrat-SemiBold';
+  font-size: 14px;
+  line-height: 20px;
+`;
+
+const Body2 = styled.Text`
+  font-family: 'Montserrat-Regular';
+  font-size: 14px;
+  line-height: 16px;
+`;
+
+export default {H1, H2, Body1, Body2};

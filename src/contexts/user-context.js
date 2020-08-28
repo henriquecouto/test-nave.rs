@@ -1,7 +1,7 @@
 import React, {createContext, useState, useEffect} from 'react';
 import {loadUserData} from '../helpers/storage/user-data';
 import Loading from '../components/Loading';
-import {makeLogout} from '../helpers/actions/auth';
+import {makeLogout, makeLogin} from '../helpers/actions/auth';
 
 export const UserContext = createContext();
 
@@ -16,13 +16,21 @@ export const UserContextProvider = ({children}) => {
     return <Loading />;
   }
 
-  const logout = async () => {
-    const onSuccess = () => setUser({});
-    makeLogout(onSuccess);
+  const logout = () => {
+    setUser({});
+    makeLogout();
+  };
+
+  const login = (email, password, successCallback, errorCallback) => {
+    const onSuccess = (userData) => {
+      setUser(userData);
+      successCallback();
+    };
+    makeLogin(email, password, onSuccess, errorCallback);
   };
 
   return (
-    <UserContext.Provider value={[user, {logout}]}>
+    <UserContext.Provider value={[user, {login, logout}]}>
       {children}
     </UserContext.Provider>
   );

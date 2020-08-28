@@ -6,7 +6,7 @@ export const Container = styled.TouchableOpacity`
   background-color: ${(props) =>
     props.transparent ? '#0000' : props.theme.palette.primary};
   margin: ${(props) => (props.dense ? '0' : '20px 0')};
-  padding: 20px;
+  padding: ${(props) => (props.dense ? '5px' : '20px')};
   align-items: center;
   justify-content: center;
 `;

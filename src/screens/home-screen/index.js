@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import {loadNavers} from '../../helpers/api';
 import {UserContext} from '../../contexts/user-context';
 import NaverCard from '../../components/NaverCard';
+import Loading from '../../components/Loading';
 
 export default function HomeScreen() {
   const [user] = useContext(UserContext);
@@ -21,10 +22,14 @@ export default function HomeScreen() {
   }, [user.token]);
 
   useEffect(() => {
-    callLoadNavers();
-  }, [callLoadNavers]);
+    if (user.token) {
+      callLoadNavers();
+    }
+  }, [user.token, callLoadNavers]);
 
-  console.log(navers);
+  if (!user.token) {
+    return <Loading />;
+  }
 
   return (
     <Container>
