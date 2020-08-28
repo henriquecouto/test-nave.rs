@@ -100,7 +100,12 @@ export default function ViewNaverScreen({route, navigation}) {
             <Icon.Trash />
             {'  '} Excluir
           </Button>
-          <Button fullWidth withBorders flex={1} style={{marginLeft: 6}}>
+          <Button
+            fullWidth
+            withBorders
+            flex={1}
+            style={{marginLeft: 6}}
+            onPress={() => navigation.navigate('EditNaver', {naverId})}>
             <Icon.EditWhite />
             {'  '} Editar
           </Button>

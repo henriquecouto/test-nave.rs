@@ -12,7 +12,7 @@ import Button from '../Button';
 import Icon from '../../../assets/icons';
 import {TouchableOpacity} from 'react-native';
 
-export default function NaverCard({item, removeNaver, onPress}) {
+export default function NaverCard({item, removeNaver, editNaver, onPress}) {
   return (
     <Container>
       <TouchableOpacity onPress={onPress}>
@@ -30,7 +30,7 @@ export default function NaverCard({item, removeNaver, onPress}) {
         <Button transparent dense onPress={removeNaver}>
           <Icon.Trash />
         </Button>
-        <Button transparent dense>
+        <Button transparent dense onPress={editNaver}>
           <Icon.Edit />
         </Button>
       </ActionsContainer>

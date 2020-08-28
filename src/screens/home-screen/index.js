@@ -87,6 +87,9 @@ export default function HomeScreen({navigation}) {
           <NaverCard
             {...props}
             removeNaver={() => confirmRemoveNaver(props.item.id)}
+            editNaver={() =>
+              navigation.navigate('EditNaver', {naverId: props.item.id})
+            }
             onPress={() => viewNaver(props.item.id)}
           />
         )}

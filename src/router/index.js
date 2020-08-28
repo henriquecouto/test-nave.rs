@@ -14,6 +14,7 @@ import DrawerButton from '../components/DrawerButton';
 import DrawerContent from '../components/DrawerContent';
 import Icon from '../../assets/icons';
 import ViewNaverScreen from '../screens/view-naver-screen';
+import EditNaverScreen from '../screens/edit-naver-screen';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -44,6 +45,7 @@ function StackRoutes({navigation}) {
       />
       <Stack.Screen name="AddNaver" component={AddNaverScreen} />
       <Stack.Screen name="ViewNaver" component={ViewNaverScreen} />
+      <Stack.Screen name="EditNaver" component={EditNaverScreen} />
     </Stack.Navigator>
   );
 }
