@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native';
 import {Grayscale} from 'react-native-color-matrix-image-filters';
 
 import {
@@ -12,7 +11,7 @@ import Typography from '../Typography';
 import Button from '../Button';
 import Icon from '../../../assets/icons';
 
-export default function NaverCard({item}) {
+export default function NaverCard({item, removeNaver}) {
   return (
     <Container>
       <Grayscale>
@@ -23,7 +22,7 @@ export default function NaverCard({item}) {
         <Typography.Body2>{item.project}</Typography.Body2>
       </InfoContainer>
       <ActionsContainer>
-        <Button transparent dense>
+        <Button transparent dense onPress={removeNaver}>
           <Icon.Trash />
         </Button>
         <Button transparent dense>

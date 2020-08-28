@@ -22,3 +22,8 @@ export const CardBody = styled.View`
   padding: 24px;
   padding-top: 0;
 `;
+
+export const CardFooter = styled.View`
+  padding: 0 24px;
+  flex-direction: row;
+`;

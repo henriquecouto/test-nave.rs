@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
+  ${(props) => props.flex && `flex: ${props.flex}`}
   width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
   height: 40px;
   background-color: ${(props) =>
@@ -9,6 +10,9 @@ export const Container = styled.TouchableOpacity`
   padding: ${(props) => (props.dense ? '5px' : '20px')};
   align-items: center;
   justify-content: center;
+  border-width: ${(props) => (props.withBorders ? '2px' : '0')};
+  border-style: solid;
+  border-color: ${(props) => props.theme.palette.primary};
 `;
 
 export const Text = styled.Text`
