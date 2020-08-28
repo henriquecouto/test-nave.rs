@@ -41,3 +41,15 @@ export const removeNaver = async (naverId, authToken, onSuccess) => {
     console.log(error.response.data);
   }
 };
+
+export const createNaver = async (naverData, authToken, onSuccess) => {
+  try {
+    const {data} = await navedexApi.post('/navers', naverData, {
+      headers: {Authorization: `Bearer ${authToken}`},
+    });
+
+    onSuccess(data);
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
