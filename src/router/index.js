@@ -16,7 +16,7 @@ export default function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName={user.token ? 'Home' : 'Login'}
         screenOptions={{
           headerStyle: {
             backgroundColor: theme.palette.background,
@@ -24,15 +24,12 @@ export default function Router() {
           headerTitleAlign: 'center',
           headerTitle: (props) => <Logo height={32} {...props} />,
         }}>
-        {user.token ? (
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Login"
-            component={LoginScreen}
-          />
-        ) : (
-          <Stack.Screen name="Home" component={HomeScreen} />
-        )}
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Login"
+          component={LoginScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

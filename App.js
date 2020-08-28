@@ -9,15 +9,15 @@ import {UserContextProvider} from './src/contexts/user-context';
 
 const App = () => {
   return (
-    <UserContextProvider>
-      <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme}>
+      <UserContextProvider>
         <StatusBar
           backgroundColor={defaultTheme.palette.background}
           barStyle="dark-content"
         />
         <Router />
-      </ThemeProvider>
-    </UserContextProvider>
+      </UserContextProvider>
+    </ThemeProvider>
   );
 };
 
