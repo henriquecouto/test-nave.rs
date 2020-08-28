@@ -14,11 +14,11 @@ export default function HomeScreen() {
   const [user] = useContext(UserContext);
   const [navers, setNavers] = useState([]);
 
-  const [alertConfirmRemove, setAlertConfirmRemove] = useState({
+  const [alert, setAlert] = useState({
     visible: false,
   });
 
-  const cleanAlertConfirmRemove = () => setAlertConfirmRemove({visible: false});
+  const cleanAlert = () => setAlert({visible: false});
 
   const callLoadNavers = useCallback(() => {
     const onError = (errorMessage) => {
@@ -41,28 +41,35 @@ export default function HomeScreen() {
   const callRemoveNaver = (naverId) => () => {
     const onSuccess = () => {
       callLoadNavers();
-      cleanAlertConfirmRemove();
+
+      const successAlertProps = {
+        visible: true,
+        onClose: cleanAlert,
+        title: 'Naver excluído',
+        message: 'Naver excluído com sucesso!',
+      };
+      setAlert(successAlertProps);
     };
 
     removeNaver(naverId, user.token, onSuccess);
   };
 
   const confirmRemoveNaver = (naverId) => {
-    const alertProps = {
+    const alertConfirmRemoveProps = {
       visible: true,
-      onClose: cleanAlertConfirmRemove,
+      onClose: cleanAlert,
       onConfirm: callRemoveNaver(naverId),
       title: 'Excluir naver',
       message: 'Tem certeza que deseja excluir este naver?',
       showActions: true,
     };
 
-    setAlertConfirmRemove(alertProps);
+    setAlert(alertConfirmRemoveProps);
   };
 
   return (
     <Container>
-      <Alert {...alertConfirmRemove} />
+      <Alert {...alert} />
       <Header>
         <Typography.H1>Navers</Typography.H1>
         <Button>Adicionar naver</Button>
