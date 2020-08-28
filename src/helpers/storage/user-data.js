@@ -21,4 +21,13 @@ const loadUserData = async (onSuccess) => {
   }
 };
 
-export {saveUserData, loadUserData};
+const removeUserData = async (onSuccess) => {
+  try {
+    await AsyncStorage.removeItem(USERDATA_STORAGEKEY);
+    onSuccess();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {saveUserData, loadUserData, removeUserData};

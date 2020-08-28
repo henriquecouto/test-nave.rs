@@ -11,7 +11,10 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const Text = styled.Text`
-  color: ${(props) => props.theme.palette.secondary};
+  color: ${(props) =>
+    props.transparent
+      ? props.theme.palette.primary
+      : props.theme.palette.secondary};
   font-size: 14px;
   font-family: 'Montserrat-SemiBold';
   line-height: 24px;

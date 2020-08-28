@@ -4,7 +4,7 @@ import {CommonActions} from '@react-navigation/native';
 import {Container, Form} from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import makeLogin from '../../helpers/actions/auth';
+import {makeLogin} from '../../helpers/actions/auth';
 import Alert from '../../components/Alert';
 import {Logo} from '../../../assets/images';
 

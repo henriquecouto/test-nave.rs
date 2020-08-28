@@ -1,13 +1,8 @@
 import validator from 'validator';
 import {login} from '../api';
-import {saveUserData} from '../storage/user-data';
+import {saveUserData, removeUserData} from '../storage/user-data';
 
-export default function makeLogin(
-  email,
-  password,
-  successCallback,
-  errorCallback,
-) {
+export function makeLogin(email, password, successCallback, errorCallback) {
   if (!validator.isEmail(email)) {
     errorCallback('Você inseriu um email inválido!');
     return;
@@ -23,4 +18,8 @@ export default function makeLogin(
   };
 
   login(email, password, onSuccess, errorCallback);
+}
+
+export function makeLogout(successCallback) {
+  removeUserData(successCallback);
 }

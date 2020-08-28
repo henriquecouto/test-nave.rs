@@ -1,36 +1,60 @@
 import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import LoginScreen from '../screens/login-screen';
 import HomeScreen from '../screens/home-screen';
 import {useTheme} from 'styled-components';
 import {Logo} from '../../assets/images';
 import {UserContext} from '../contexts/user-context';
+import DrawerButton from '../components/DrawerButton';
+import DrawerContent from '../components/DrawerContent';
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function StackRoutes({navigation}) {
+  const theme = useTheme();
+
+  return (
+    <Stack.Navigator
+      initialRouteName="Navers"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.palette.background,
+        },
+        headerLeftContainerStyle: {marginLeft: 17.5},
+        headerTitleAlign: 'center',
+        headerTitle: (props) => <Logo height={32} {...props} />,
+      }}>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerLeft: (props) => (
+            <DrawerButton {...props} action={navigation.toggleDrawer} />
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function Router() {
-  const theme = useTheme();
-  const user = useContext(UserContext);
+  const [user, {logout}] = useContext(UserContext);
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Drawer.Navigator
         initialRouteName={user.token ? 'Home' : 'Login'}
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: theme.palette.background,
-          },
-          headerTitleAlign: 'center',
-          headerTitle: (props) => <Logo height={32} {...props} />,
-        }}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen
-          options={{headerShown: false}}
+        drawerContent={(props) => <DrawerContent {...props} logout={logout} />}>
+        <Drawer.Screen name="Home" component={StackRoutes} />
+        <Drawer.Screen
+          options={{headerShown: false, gestureEnabled: false}}
           name="Login"
           component={LoginScreen}
         />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
