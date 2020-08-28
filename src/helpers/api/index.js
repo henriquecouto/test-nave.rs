@@ -18,3 +18,14 @@ export const login = async (email, password, onSuccess, onError) => {
     }
   }
 };
+
+export const loadNavers = async (authToken, onSuccess, onError) => {
+  try {
+    const {data} = await navedexApi.get('/navers', {
+      headers: {Authorization: `Bearer ${authToken}`},
+    });
+    onSuccess(data);
+  } catch (error) {
+    onError(error.response.data);
+  }
+};
