@@ -1,12 +1,12 @@
 import React, {useState, useContext} from 'react';
 import Typography from '../../components/Typography';
 import {Container, ScrollView} from './styles';
-import Input, {MaskedInput} from '../../components/Input';
 import Button from '../../components/Button';
 import {createNaver} from '../../helpers/api';
 import {UserContext} from '../../contexts/user-context';
 import Alert from '../../components/Alert';
 import {CommonActions} from '@react-navigation/native';
+import FormNaver from '../../components/FormNaver';
 
 export default function AddNaverScreen({navigation}) {
   const [user] = useContext(UserContext);
@@ -49,28 +49,24 @@ export default function AddNaverScreen({navigation}) {
         />
         <Typography.H1>Adicionar naver</Typography.H1>
 
-        <Input label="Nome" value={name} onChangeText={setName} />
-        <Input label="Cargo" value={job_role} onChangeText={setJobRole} />
-        <MaskedInput
-          label="Idade"
-          value={birthdate}
-          onChangeText={setBirthdate}
-          type="datetime"
-          options={{format: 'DD/MM/YYYY'}}
+        <FormNaver
+          state={{
+            name,
+            job_role,
+            birthdate,
+            admission_date,
+            project,
+            url,
+          }}
+          setState={{
+            setName,
+            setJobRole,
+            setBirthdate,
+            setAdmissionDate,
+            setProject,
+            setUrl,
+          }}
         />
-        <MaskedInput
-          label="Tempo de empresa"
-          value={admission_date}
-          onChangeText={setAdmissionDate}
-          type="datetime"
-          options={{format: 'DD/MM/YYYY'}}
-        />
-        <Input
-          label="Projetos que participou"
-          value={project}
-          onChangeText={setProject}
-        />
-        <Input label="URL da foto do naver" value={url} onChangeText={setUrl} />
 
         <Button fullWidth onPress={callAddNaver}>
           Salvar

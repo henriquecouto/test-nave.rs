@@ -64,3 +64,15 @@ export const showNaver = async (naverId, authToken, onSuccess) => {
     console.log(error.response.data);
   }
 };
+
+export const editNaver = async (naverId, naverData, authToken, onSuccess) => {
+  console.log({naverData});
+  try {
+    const {data} = await navedexApi.put(`/navers/${naverId}`, naverData, {
+      headers: {Authorization: `Bearer ${authToken}`},
+    });
+    onSuccess(data);
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
