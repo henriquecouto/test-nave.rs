@@ -22,7 +22,6 @@ export const Text = styled.Text`
       : props.theme.palette.secondary};
   font-size: 14px;
   font-family: 'Montserrat-SemiBold';
-  line-height: 24px;
   display: flex;
   align-items: center;
   text-align: center;

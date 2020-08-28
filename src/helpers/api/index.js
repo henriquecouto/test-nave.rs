@@ -53,3 +53,14 @@ export const createNaver = async (naverData, authToken, onSuccess) => {
     console.log(error.response.data);
   }
 };
+
+export const showNaver = async (naverId, authToken, onSuccess) => {
+  try {
+    const {data} = await navedexApi.get(`/navers/${naverId}`, {
+      headers: {Authorization: `Bearer ${authToken}`},
+    });
+    onSuccess(data);
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
