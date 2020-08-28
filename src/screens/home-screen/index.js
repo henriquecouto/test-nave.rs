@@ -1,10 +1,12 @@
 import React, {useState, useEffect, useContext, useCallback} from 'react';
+import {FlatList} from 'react-native';
 
 import {Container, Header} from './styles';
 import Typography from '../../components/Typography';
 import Button from '../../components/Button';
 import {loadNavers} from '../../helpers/api';
 import {UserContext} from '../../contexts/user-context';
+import NaverCard from '../../components/NaverCard';
 
 export default function HomeScreen() {
   const [user] = useContext(UserContext);
@@ -30,6 +32,13 @@ export default function HomeScreen() {
         <Typography.H1>Navers</Typography.H1>
         <Button>Adicionar naver</Button>
       </Header>
+      <FlatList
+        horizontal={false}
+        data={navers}
+        renderItem={NaverCard}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+      />
     </Container>
   );
 }
