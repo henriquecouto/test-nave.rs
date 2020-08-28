@@ -10,7 +10,7 @@ import NaverCard from '../../components/NaverCard';
 import Loading from '../../components/Loading';
 import Alert from '../../components/Alert';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const [user] = useContext(UserContext);
   const [navers, setNavers] = useState([]);
 
@@ -72,7 +72,9 @@ export default function HomeScreen() {
       <Alert {...alert} />
       <Header>
         <Typography.H1>Navers</Typography.H1>
-        <Button>Adicionar naver</Button>
+        <Button onPress={() => navigation.navigate('AddNaver')}>
+          Adicionar naver
+        </Button>
       </Header>
       <FlatList
         horizontal={false}

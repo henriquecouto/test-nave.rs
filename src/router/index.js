@@ -5,11 +5,14 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import LoginScreen from '../screens/login-screen';
 import HomeScreen from '../screens/home-screen';
+import AddNaverScreen from '../screens/add-naver-screen';
+
 import {useTheme} from 'styled-components';
 import {Logo} from '../../assets/images';
 import {UserContext} from '../contexts/user-context';
 import DrawerButton from '../components/DrawerButton';
 import DrawerContent from '../components/DrawerContent';
+import Icon from '../../assets/icons';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -27,6 +30,7 @@ function StackRoutes({navigation}) {
         headerLeftContainerStyle: {marginLeft: 17.5},
         headerTitleAlign: 'center',
         headerTitle: (props) => <Logo height={32} {...props} />,
+        headerBackImage: () => <Icon.Back />,
       }}>
       <Stack.Screen
         name="Home"
@@ -37,6 +41,7 @@ function StackRoutes({navigation}) {
           ),
         }}
       />
+      <Stack.Screen name="AddNaver" component={AddNaverScreen} />
     </Stack.Navigator>
   );
 }
