@@ -10,17 +10,22 @@ import {
 import Typography from '../Typography';
 import Button from '../Button';
 import Icon from '../../../assets/icons';
+import {TouchableOpacity} from 'react-native';
 
-export default function NaverCard({item, removeNaver}) {
+export default function NaverCard({item, removeNaver, onPress}) {
   return (
     <Container>
-      <Grayscale>
-        <ProfilePicture source={{uri: item.url}} />
-      </Grayscale>
-      <InfoContainer>
-        <Typography.Body1>{item.name}</Typography.Body1>
-        <Typography.Body2>{item.project}</Typography.Body2>
-      </InfoContainer>
+      <TouchableOpacity onPress={onPress}>
+        <>
+          <Grayscale>
+            <ProfilePicture source={{uri: item.url}} />
+          </Grayscale>
+          <InfoContainer onPress={onPress}>
+            <Typography.Body1>{item.name}</Typography.Body1>
+            <Typography.Body2>{item.project}</Typography.Body2>
+          </InfoContainer>
+        </>
+      </TouchableOpacity>
       <ActionsContainer>
         <Button transparent dense onPress={removeNaver}>
           <Icon.Trash />

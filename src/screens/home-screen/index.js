@@ -67,6 +67,10 @@ export default function HomeScreen({navigation}) {
     setAlert(alertConfirmRemoveProps);
   };
 
+  const viewNaver = (naverId) => {
+    navigation.navigate('ViewNaver', {naverId});
+  };
+
   return (
     <Container>
       <Alert {...alert} />
@@ -83,6 +87,7 @@ export default function HomeScreen({navigation}) {
           <NaverCard
             {...props}
             removeNaver={() => confirmRemoveNaver(props.item.id)}
+            onPress={() => viewNaver(props.item.id)}
           />
         )}
         keyExtractor={(item) => item.id}
