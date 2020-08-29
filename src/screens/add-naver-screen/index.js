@@ -5,11 +5,12 @@ import Button from '../../components/Button';
 import {createNaver} from '../../helpers/api';
 import {UserContext} from '../../contexts/user-context';
 import Alert from '../../components/Alert';
-import {CommonActions} from '@react-navigation/native';
 import FormNaver from '../../components/FormNaver';
+import {NaversContext} from '../../contexts/navers-context';
 
 export default function AddNaverScreen({navigation}) {
   const [user] = useContext(UserContext);
+  const [, {addNaver}] = useContext(NaversContext);
 
   const [name, setName] = useState('');
   const [job_role, setJobRole] = useState('');
@@ -21,8 +22,8 @@ export default function AddNaverScreen({navigation}) {
   const [alertNaverSaved, setAlertNaverSaved] = useState(false);
 
   const callAddNaver = () => {
-    const onSuccess = () => {
-      setAlertNaverSaved(true);
+    const onSuccess = (naverData) => {
+      addNaver(naverData, () => setAlertNaverSaved(true));
     };
     const naverData = {name, job_role, birthdate, admission_date, project, url};
     createNaver(naverData, user.token, onSuccess);
@@ -30,12 +31,7 @@ export default function AddNaverScreen({navigation}) {
 
   const onCloseAlertNaverSaver = () => {
     setAlertNaverSaved(false);
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{name: 'Home'}],
-      }),
-    );
+    navigation.pop();
   };
 
   return (

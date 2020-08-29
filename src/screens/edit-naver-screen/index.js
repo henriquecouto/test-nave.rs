@@ -8,10 +8,12 @@ import {showNaver, editNaver} from '../../helpers/api';
 import {UserContext} from '../../contexts/user-context';
 import FormNaver from '../../components/FormNaver';
 import Alert from '../../components/Alert';
+import {NaversContext} from '../../contexts/navers-context';
 
 export default function EditNaverScreen({route}) {
   const {naverId} = route.params;
   const [user] = useContext(UserContext);
+  const [, {updateNaver}] = useContext(NaversContext);
 
   const [name, setName] = useState('');
   const [job_role, setJobRole] = useState('');
@@ -40,8 +42,8 @@ export default function EditNaverScreen({route}) {
   }, [naverId, user.token]);
 
   const callEditNaver = () => {
-    const onSuccess = () => {
-      setAlertNaverEdited(true);
+    const onSuccess = (naverData) => {
+      updateNaver(naverId, naverData, () => setAlertNaverEdited(true));
     };
     const naverData = {name, job_role, birthdate, admission_date, project, url};
     editNaver(naverId, naverData, user.token, onSuccess);

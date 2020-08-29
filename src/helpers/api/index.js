@@ -26,7 +26,7 @@ export const loadNavers = async (authToken, onSuccess, onError) => {
     });
     onSuccess(data);
   } catch (error) {
-    onError(error.response.data);
+    console.log(error.response.data);
   }
 };
 

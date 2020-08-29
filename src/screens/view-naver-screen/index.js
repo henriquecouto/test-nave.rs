@@ -9,11 +9,13 @@ import Typography from '../../components/Typography';
 import Button from '../../components/Button';
 import Icon from '../../../assets/icons';
 import Alert from '../../components/Alert';
-import {CommonActions} from '@react-navigation/native';
+import {NaversContext} from '../../contexts/navers-context';
 
 export default function ViewNaverScreen({route, navigation}) {
   const {naverId} = route.params;
   const [user] = useContext(UserContext);
+  const [, {deleteNaver}] = useContext(NaversContext);
+
   const [naver, setNaver] = useState({});
   const [alert, setAlert] = useState({
     visible: false,
@@ -35,17 +37,13 @@ export default function ViewNaverScreen({route, navigation}) {
         visible: true,
         onClose: () => {
           cleanAlert();
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{name: 'Home'}],
-            }),
-          );
+          navigation.pop();
         },
         title: 'Naver excluído',
         message: 'Naver excluído com sucesso!',
       };
-      setAlert(successAlertProps);
+
+      deleteNaver(naverId, () => setAlert(successAlertProps));
     };
 
     removeNaver(naverId, user.token, onSuccess);

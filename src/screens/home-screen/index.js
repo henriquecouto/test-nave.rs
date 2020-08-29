@@ -1,18 +1,18 @@
-import React, {useState, useEffect, useContext, useCallback} from 'react';
+import React, {useState, useContext} from 'react';
 import {FlatList} from 'react-native';
 
 import {Container, Header} from './styles';
 import Typography from '../../components/Typography';
 import Button from '../../components/Button';
-import {loadNavers, removeNaver} from '../../helpers/api';
+import {removeNaver} from '../../helpers/api';
 import {UserContext} from '../../contexts/user-context';
 import NaverCard from '../../components/NaverCard';
-import Loading from '../../components/Loading';
 import Alert from '../../components/Alert';
+import {NaversContext} from '../../contexts/navers-context';
 
 export default function HomeScreen({navigation}) {
   const [user] = useContext(UserContext);
-  const [navers, setNavers] = useState([]);
+  const [navers, {deleteNaver}] = useContext(NaversContext);
 
   const [alert, setAlert] = useState({
     visible: false,
@@ -20,35 +20,16 @@ export default function HomeScreen({navigation}) {
 
   const cleanAlert = () => setAlert({visible: false});
 
-  const callLoadNavers = useCallback(() => {
-    const onError = (errorMessage) => {
-      console.log(errorMessage);
-    };
-
-    loadNavers(user.token, setNavers, onError);
-  }, [user.token]);
-
-  useEffect(() => {
-    if (user.token) {
-      callLoadNavers();
-    }
-  }, [user.token, callLoadNavers]);
-
-  if (!user.token) {
-    return <Loading />;
-  }
-
   const callRemoveNaver = (naverId) => () => {
     const onSuccess = () => {
-      callLoadNavers();
-
       const successAlertProps = {
         visible: true,
         onClose: cleanAlert,
         title: 'Naver excluído',
         message: 'Naver excluído com sucesso!',
       };
-      setAlert(successAlertProps);
+
+      deleteNaver(naverId, () => setAlert(successAlertProps));
     };
 
     removeNaver(naverId, user.token, onSuccess);
