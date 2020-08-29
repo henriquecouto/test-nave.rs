@@ -17,7 +17,6 @@
     "@react-navigation/stack": "^5.9.0",
     "axios": "^0.20.0",
     "moment": "^2.27.0",
-    "package.json": "^2.0.1",
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-color-matrix-image-filters": "^5.2.5",
@@ -28,8 +27,7 @@
     "react-native-screens": "^2.10.1",
     "react-native-svg": "^12.1.0",
     "styled-components": "^5.1.1",
-    "validator": "^13.1.1",
-    "yarn.lock": "^0.0.1-security"
+    "validator": "^13.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
