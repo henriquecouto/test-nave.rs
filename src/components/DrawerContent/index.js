@@ -15,7 +15,14 @@ export default function DrawerContent({navigation, logout}) {
         <Button
           transparent
           fullWidth
-          onPress={() => navigation.navigate('Home')}>
+          onPress={() =>
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{name: 'Home'}],
+              }),
+            )
+          }>
           <Typography.H1>Navers</Typography.H1>
         </Button>
         <Button
